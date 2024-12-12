@@ -1,0 +1,306 @@
+:root {
+    /* Colors */
+    --bg-color: #f5f7fa; /* Light background */
+    --primary-color: #4a90e2; /* Primary theme color */
+    --secondary-color: #d9dde5; /* Neutral color for borders and backgrounds */
+    --text-color: #2c3e50; /* Dark text for readability */
+    --text-light-color: #7f8c8d; /* Lighter text for secondary elements */
+    --white: #ffffff; /* Pure white */
+    --success-color: #2ecc71; /* Green for success indicators */
+    --warning-color: #f1c40f; /* Yellow for warnings */
+    --danger-color: #e74c3c; /* Red for errors */
+
+    /* Font and Sizing */
+    --font-family: 'Inter', sans-serif; /* Clean, modern font */
+    --font-size-sm: 0.875rem; /* Small font */
+    --font-size-base: 1rem; /* Base font size */
+    --font-size-lg: 1.25rem; /* Large font size */
+
+    /* Spacing */
+    --padding-sm: 0.5rem; /* Small padding */
+    --padding-base: 1rem; /* Base padding */
+    --padding-lg: 1.5rem; /* Large padding */
+
+    /* Borders and Shadows */
+    --border-radius: 0.75rem; /* Smooth, rounded corners */
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    --box-shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.15); /* Hover shadow */
+
+    /* Transitions */
+    --transition: 0.3s ease-in-out; /* Smooth animations */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* To-Do Container */
+.todo {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 500px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: var(--padding-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-base);
+    transition: var(--transition);
+}
+
+.todo:hover {
+    box-shadow: var(--box-shadow-hover);
+}
+
+/* Header */
+h2 {
+    font-size: var(--font-size-lg);
+    color: var(--text-color);
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+}
+
+/* Input and Filters Section */
+.filter-search-container {
+    display: flex;
+    align-items: center;
+    gap: var(--padding-sm);
+    margin-bottom: var(--padding-base);
+}
+
+.input-field {
+    flex: 1; /* Allow input to take up as much space as available */
+    padding: var(--padding-sm);
+    font-size: var(--font-size-base);
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    outline: none;
+    transition: var(--transition);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-right: var(--padding-sm); /* Add some spacing from the filters */
+}
+
+.input-field:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.4);
+}
+
+
+.priority-select {
+    padding: var(--padding-sm);
+    font-size: var(--font-size-sm);
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    color: var(--text-light-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.priority-select:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+}
+
+/* Filter Buttons (Updated Colors) */
+.filter-buttons {
+    display: grid;
+    grid-auto-flow: column; /* Arrange buttons in a row */
+    gap: var(--padding-sm); /* Space between buttons */
+    justify-content: start;
+}
+
+.filter-btn {
+    padding: 0.3rem 0.8rem; /* Compact padding */
+    font-size: var(--font-size-sm); /* Smaller font size */
+    border-radius: var(--border-radius);
+    background-color: var(--secondary-color); /* Neutral background */
+    color: var(--text-color); /* Dark text color for readability */
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn:hover {
+    background-color: var(--primary-color); /* Highlight on hover */
+    color: var(--white); /* White text on hover */
+}
+
+.filter-btn.active {
+    background-color: var(--success-color); /* Green for active filter */
+    color: var(--white); /* White text for contrast */
+    box-shadow: var(--box-shadow-hover); /* Subtle shadow for active filter */
+}
+
+
+/* Add Task Button */
+.btn {
+    padding: var(--padding-sm) var(--padding-base);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: var(--white);
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+}
+
+.btn:hover {
+    background-color: #357ab8;
+    box-shadow: var(--box-shadow-hover);
+}
+
+/* Task List */
+.scroll {
+    max-height: 250px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    padding: var(--padding-sm);
+}
+
+.scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+}
+
+#todoList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#todoList li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between task text and controls */
+    background-color: var(--white);
+    padding: var(--padding-sm) var(--padding-base);
+    margin-bottom: var(--padding-sm);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+#todoList li:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--box-shadow-hover);
+}
+
+.todo-checkbox {
+    appearance: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--secondary-color);
+    background-color: var(--white);
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.todo-checkbox:checked {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.todo-checkbox:checked::before {
+    content: "✔";
+    color: var(--white);
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-text {
+    flex: 1; /* Allow the text to take up remaining space */
+    font-size: var(--font-size-base);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+#todo-0.disabled {
+    text-decoration: line-through; /* Strike through for disabled tasks */
+    color: var(--text-light-color); /* Faded color for disabled tasks */
+}
+
+/* Delete All Button */
+.counter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-sm);
+    color: var(--text-light-color);
+}
+
+.counter-container button {
+    padding: var(--padding-sm) var(--padding-base);
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--danger-color);
+    color: var(--white);
+    font-size: var(--font-size-sm);
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.counter-container button:hover {
+    background-color: #c0392b; /* Darker red for hover effect */
+    box-shadow: var(--box-shadow-hover);
+}
+
+.edit-input {
+    flex: 1;
+    padding: var(--padding-sm);
+    font-size: var(--font-size-base);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    outline: none;
+    transition: var(--transition);
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+}
+
+/* Footer Section */
+.footer {
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--text-light-color);
+    margin-top: var(--padding-lg);
+    padding-top: var(--padding-sm);
+}
+
+.footer p {
+    margin: 0.2rem 0;
+}
+
+.made-by {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-color);
+}
+
+.author {
+    font-size: var(--font-size-sm);
+    font-weight: bold;
+    color: var(--primary-color);
+}
